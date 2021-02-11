@@ -5,15 +5,21 @@ const path = require('path');
 const app = express();
 
 // for body parser 
-app.use(express.urlencoded( { extended : false }));
+app.use(express.urlencoded( { extended : false } ));
 
 // serve static files 
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 // template engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('views engine', 'pug');
 
+
+// serving the index page
+app.get('/', function(req, res) {
+    res.render('index');
+});
 
 // setting up the server
 app.listen(9000, () => {
